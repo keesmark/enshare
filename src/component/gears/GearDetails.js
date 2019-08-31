@@ -33,7 +33,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const GearDetails = () => {
+const GearDetails = props => {
   const classes = useStyles();
 
   return (
