@@ -62,7 +62,7 @@ class SignIn extends Component {
               <LockOutlinedIcon />
             </Avatar>
             <Typography component="h1" variant="h5">
-              Sign In
+              ログイン
             </Typography>
             <form
               onSubmit={this.handleSubmit}
@@ -103,12 +103,12 @@ class SignIn extends Component {
                 color="primary"
                 className={classes.submit}
               >
-                Sign In
+                ログイン
               </Button>
               <Grid container justify="flex-end">
                 <Grid item>
                   <Link href="#" variant="body2">
-                    Already have an account? Sign in
+                    まだアカウントをお持ちでない方は会員登録してくだい。
                   </Link>
                 </Grid>
               </Grid>

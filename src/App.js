@@ -4,6 +4,7 @@ import Navbar from "./component/layout/Navbar";
 import Dashboard from "./component/dashboard/Dashboard";
 import GearDetails from "./component/gears/GearDetails";
 import SignIn from "./component/auth/SignIn";
+import SignUp from "./component/auth/SignUp";
 
 class App extends Component {
   render() {
@@ -15,6 +16,7 @@ class App extends Component {
             <Route exact path="/" component={Dashboard} />
             <Route path="/gear/:id" component={GearDetails} />
             <Route path="/signin" component={SignIn} />
+            <Route path="/signup" component={SignUp} />
           </Switch>
         </div>
       </BrowserRouter>
