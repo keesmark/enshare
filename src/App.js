@@ -5,6 +5,7 @@ import Dashboard from "./component/dashboard/Dashboard";
 import GearDetails from "./component/gears/GearDetails";
 import SignIn from "./component/auth/SignIn";
 import SignUp from "./component/auth/SignUp";
+import CreateGears from "./component/gears/CreateGears";
 
 class App extends Component {
   render() {
@@ -17,6 +18,7 @@ class App extends Component {
             <Route path="/gear/:id" component={GearDetails} />
             <Route path="/signin" component={SignIn} />
             <Route path="/signup" component={SignUp} />
+            <Route path="/create" component={CreateGears} />
           </Switch>
         </div>
       </BrowserRouter>
