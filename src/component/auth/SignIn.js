@@ -108,7 +108,7 @@ class SignIn extends Component {
               <Grid container justify="flex-end">
                 <Grid item>
                   <Link href="#" variant="body2">
-                    まだアカウントをお持ちでない方は会員登録してくだい。
+                    まだアカウントをお持ちでない方は会員登録してください。
                   </Link>
                 </Grid>
               </Grid>

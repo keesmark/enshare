@@ -133,7 +133,7 @@ class SignUp extends Component {
               <Grid container justify="flex-end">
                 <Grid item>
                   <Link href="#" variant="body2">
-                    アカウントをすでにお持ちならログインしてください。
+                    アカウントをすでにお持ちならこちらからログインしてください。
                   </Link>
                 </Grid>
               </Grid>
