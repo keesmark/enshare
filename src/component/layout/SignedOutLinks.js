@@ -15,10 +15,10 @@ const SignedOutLinks = () => {
   const classes = useStyles();
   return (
     <Toolbar>
-      <NavLink to="/" className={classes.linkColor}>
+      <NavLink to="/signUp" className={classes.linkColor}>
         <Button color="inherit">会員登録</Button>
       </NavLink>
-      <NavLink to="/" className={classes.linkColor}>
+      <NavLink to="/signIn" className={classes.linkColor}>
         <Button color="inherit">ログイン</Button>
       </NavLink>
     </Toolbar>

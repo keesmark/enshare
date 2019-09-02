@@ -18,7 +18,7 @@ const SignedInLinks = () => {
   const classes = useStyles();
   return (
     <Toolbar>
-      <NavLink to="/" className={classes.linkColor}>
+      <NavLink to="/create" className={classes.linkColor}>
         <Button color="inherit">新規投稿</Button>
       </NavLink>
       <NavLink to="/" className={classes.linkColor}>
