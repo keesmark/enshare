@@ -10,6 +10,7 @@ import Typography from "@material-ui/core/Typography";
 import { withStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import PropTypes from "prop-types";
+import CloudUploadIcon from "@material-ui/icons/CloudUpload";
 
 const styles = theme => ({
   "@global": {
@@ -33,13 +34,23 @@ const styles = theme => ({
   },
   submit: {
     margin: theme.spacing(3, 0, 2)
+  },
+  button: {
+    margin: theme.spacing(1)
+  },
+  rightIcon: {
+    marginLeft: theme.spacing(1)
+  },
+  input: {
+    display: "none"
   }
 });
 
 class CreateGears extends Component {
   state = {
     title: "",
-    amazon: "",
+    amazonUrl: "",
+    imgUrl: "",
     content: ""
   };
   handleChange = e => {
@@ -82,16 +93,41 @@ class CreateGears extends Component {
                     onChange={this.handleChange}
                   />
                 </Grid>
-                <Grid item xs={12}>
+                <Grid item xs={12} md={6}>
                   <TextField
                     variant="outlined"
                     required
                     fullWidth
-                    id="amazon"
+                    id="amazonUrl"
                     label="amazon URL"
-                    name="amazon"
+                    name="amazonUrl"
                     onChange={this.handleChange}
                   />
+                </Grid>
+                <Grid item xs={12} md={6}>
+                  <input
+                    accept="image/*"
+                    className={classes.input}
+                    id="imgUrl"
+                    multiple
+                    type="file"
+                    onChange={this.handleChange}
+                  />
+                  <label htmlFor="imgUrl">
+                    <Button
+                      variant="contained"
+                      component="span"
+                      className={classes.button}
+                      color="default"
+                      fullWidth
+                      id="imgUrlBtn"
+                      name="imgUrlBtn"
+                      size="large"
+                    >
+                      Upload
+                      <CloudUploadIcon className={classes.rightIcon} />
+                    </Button>
+                  </label>
                 </Grid>
                 <Grid item xs={12}>
                   <TextField
