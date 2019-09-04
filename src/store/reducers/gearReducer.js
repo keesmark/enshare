@@ -28,6 +28,11 @@ const initState = {
 };
 
 const gearReducer = (state = initState, action) => {
+  // eslint-disable-next-line
+  switch (action.type) {
+    case "CREATE_GEAR":
+      console.log("create gear", action.gear);
+  }
   return state;
 };
 

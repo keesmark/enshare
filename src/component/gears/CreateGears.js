@@ -11,7 +11,9 @@ import { withStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import PropTypes from "prop-types";
 import CloudUploadIcon from "@material-ui/icons/CloudUpload";
-
+import { compose } from "redux";
+import { connect } from "react-redux";
+import { createGear } from "../../store/actions/gearActions";
 const styles = theme => ({
   "@global": {
     body: {
@@ -171,4 +173,16 @@ CreateGears.propTypes = {
   classes: PropTypes.object.isRequired
 };
 
-export default withStyles(styles)(CreateGears);
+const mapDispatchToProps = dispatch => {
+  return {
+    createGear: gear => dispatch(createGear(gear))
+  };
+};
+
+export default compose(
+  withStyles(styles),
+  connect(
+    null,
+    mapDispatchToProps
+  )
+)(CreateGears);
