@@ -39,7 +39,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const GearSummary = () => {
+const GearSummary = ({ gear }) => {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
 
@@ -55,7 +55,7 @@ const GearSummary = () => {
               R
             </Avatar>
           }
-          title="Shrimp and Chorizo Paella"
+          title={gear.title}
           subheader="September 14, 2016"
         />
         <CardMedia

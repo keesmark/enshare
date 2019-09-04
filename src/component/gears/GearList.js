@@ -2,12 +2,6 @@ import React from "react";
 import GearSummary from "./GearSummary";
 import { makeStyles } from "@material-ui/core/styles";
 
-// const useStyles = makeStyles(theme => ({
-//   gearSummaryList: {
-//     display: flex,
-//   }
-// }));
-
 const useStyles = makeStyles(theme => ({
   root: {
     display: "flex",
@@ -15,14 +9,14 @@ const useStyles = makeStyles(theme => ({
     justifyContent: "space-around"
   }
 }));
-const GearList = () => {
+const GearList = ({ gears }) => {
   const classes = useStyles();
   return (
     <div className={classes.root}>
-      <GearSummary />
-      <GearSummary />
-      <GearSummary />
-      <GearSummary />
+      {gears &&
+        gears.map(gear => {
+          return <GearSummary gear={gear} key={gear.id} />;
+        })}
     </div>
   );
 };
