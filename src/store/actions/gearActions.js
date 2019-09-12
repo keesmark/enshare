@@ -5,13 +5,15 @@ const apiUrl = "http://localhost:3000";
 export const createGear = gear => {
   return (dispatch, getState) => {
     axios
-      .post(`${apiUrl}/gears`, { gear })
+      .post(`${apiUrl}/api/v1/gears`, { gear })
       .then(response => {
         dispatch({ type: "CREATE_GEAR", gear });
         console.log(response);
+        console.log("returned");
       })
-      .catch(err => {
-        console.log(err);
+      .catch(error => {
+        console.log(error);
+        console.log("aho");
       });
   };
 };

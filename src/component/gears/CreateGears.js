@@ -63,7 +63,7 @@ class CreateGears extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    console.log(this.state);
+    this.props.createGear(this.state);
   };
   render() {
     const { classes } = this.props;
@@ -138,11 +138,11 @@ class CreateGears extends Component {
                     fullWidth
                     name="content"
                     label="レビューとコメント"
-                    type="content"
                     id="content"
                     multiline
                     onChange={this.handleChange}
                     rows="10"
+                    include_hidden="false"
                   />
                 </Grid>
               </Grid>
