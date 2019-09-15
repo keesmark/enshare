@@ -23,7 +23,6 @@ class Dashboard extends Component {
   render() {
     const { classes } = this.props;
     const { gears } = this.props;
-
     return (
       <div className={classes.container}>
         <Grid container spacing={3}>

@@ -6,6 +6,7 @@ import GearDetails from "./component/gears/GearDetails";
 import SignIn from "./component/auth/SignIn";
 import SignUp from "./component/auth/SignUp";
 import CreateGears from "./component/gears/CreateGears";
+import GearList from "./component/gears/GearList";
 
 class App extends Component {
   render() {
@@ -19,6 +20,7 @@ class App extends Component {
             <Route path="/signin" component={SignIn} />
             <Route path="/signup" component={SignUp} />
             <Route path="/create" component={CreateGears} />
+            <Route path="/gears" component={GearList} />
           </Switch>
         </div>
       </BrowserRouter>
