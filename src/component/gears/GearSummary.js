@@ -15,11 +15,18 @@ import FavoriteIcon from "@material-ui/icons/Favorite";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import Moment from "react-moment";
+import { Link } from "react-router-dom";
 
 const useStyles = makeStyles(theme => ({
   card: {
-    maxWidth: 345,
-    marginBottom: "15px"
+    width: 325,
+    margin: "10px",
+    [theme.breakpoints.only("xs")]: {
+      margin: "10px 0"
+    }
+  },
+  cardTitle: {
+    width: 250
   },
   media: {
     height: 0,
@@ -37,6 +44,10 @@ const useStyles = makeStyles(theme => ({
   },
   avatar: {
     backgroundColor: red[500]
+  },
+  gearLink: {
+    textDecoration: "none",
+    color: "#000"
   }
 }));
 
@@ -50,22 +61,33 @@ const GearSummary = ({ gear }) => {
   return (
     <div>
       <Card className={classes.card}>
-        <CardHeader
-          avatar={
-            <Avatar aria-label="recipe" className={classes.avatar}>
-              R
-            </Avatar>
-          }
-          title={gear.title}
-          subheader={<Moment format="YYYY/MM/DD">{gear.created_at}</Moment>}
-        />
-        <CardMedia
-          className={classes.media}
-          image={`${process.env.PUBLIC_URL}/sample.png`}
-          title="Paella dish"
-        />
+        <Link to={"/gear/" + gear.id} className={classes.gearLink}>
+          <CardHeader
+            avatar={
+              <Avatar aria-label="recipe" className={classes.avatar}>
+                R
+              </Avatar>
+            }
+            title={
+              <Typography noWrap className={classes.cardTitle}>
+                {gear.title}
+              </Typography>
+            }
+            subheader={<Moment format="YYYY/MM/DD">{gear.created_at}</Moment>}
+          />
+          <CardMedia
+            className={classes.media}
+            image={`${process.env.PUBLIC_URL}/sample.png`}
+            title="Paella dish"
+          />
+        </Link>
         <CardContent>
-          <Typography variant="body2" color="textSecondary" component="p">
+          <Typography
+            variant="body2"
+            color="textSecondary"
+            component="p"
+            noWrap
+          >
             {gear.content}
           </Typography>
         </CardContent>

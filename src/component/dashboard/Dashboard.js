@@ -10,7 +10,8 @@ import { compose } from "redux";
 
 const styles = theme => ({
   container: {
-    flexGrow: 1
+    flexGrow: 1,
+    padding: 10
   },
   paper: {
     padding: theme.spacing(2),
@@ -27,9 +28,7 @@ class Dashboard extends Component {
       <div className={classes.container}>
         <Grid container spacing={3}>
           <Grid item xs={12} sm={6}>
-            <Paper className={classes.paper}>
-              <GearList gears={gears} />
-            </Paper>
+            <GearList gears={gears} />
           </Grid>
           <Grid item xs={12} sm={6}>
             <Paper className={classes.paper}>

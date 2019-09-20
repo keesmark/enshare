@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
+import { getGear, updateGear } from "../../store/actions/gearActions";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -12,8 +14,6 @@ import Container from "@material-ui/core/Container";
 import PropTypes from "prop-types";
 import CloudUploadIcon from "@material-ui/icons/CloudUpload";
 import { compose } from "redux";
-import { connect } from "react-redux";
-import { createGear } from "../../store/actions/gearActions";
 
 const styles = theme => ({
   "@global": {
@@ -49,7 +49,7 @@ const styles = theme => ({
   }
 });
 
-class CreateGears extends Component {
+class EditGear extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -59,18 +59,31 @@ class CreateGears extends Component {
       content: ""
     };
   }
-  handleChange = e => {
-    this.setState({
-      [e.target.id]: e.target.value
+  componentDidMount() {
+    this.props.getGear(this.props.match.params.id).then(() => {
+      const { gear } = this.props;
+      const { title, content, amazonUrl, imgUrl } = gear;
+      this.setState({
+        title,
+        content,
+        amazonUrl,
+        imgUrl
+      });
     });
+  }
+  handleChange = e => {
+    this.setState({ [e.target.name]: e.target.value });
   };
-
   handleSubmit = e => {
     e.preventDefault();
-    this.props.createGear(this.state);
+    const id = this.props.gear.id;
+    const { title, content, amazonUrl, imgUrl } = this.state;
+    const gear = { id, title, content, amazonUrl, imgUrl };
+    this.props.updateGear(gear);
   };
   render() {
     const { classes } = this.props;
+    const { title, content, amazonUrl, imgUrl } = this.state;
     return (
       <div>
         <Container component="main" maxWidth="xs">
@@ -79,8 +92,8 @@ class CreateGears extends Component {
             <Avatar className={classes.avatar}>
               <CreateIcon />
             </Avatar>
-            <Typography component="h1" variant="h5">
-              新規投稿
+            <Typography component="h2" variant="h5">
+              編集画面
             </Typography>
             <form
               onSubmit={this.handleSubmit}
@@ -96,6 +109,7 @@ class CreateGears extends Component {
                     id="title"
                     label="title"
                     name="title"
+                    value={title}
                     onChange={this.handleChange}
                   />
                 </Grid>
@@ -107,6 +121,7 @@ class CreateGears extends Component {
                     id="amazonUrl"
                     label="amazon URL"
                     name="amazonUrl"
+                    value={amazonUrl}
                     onChange={this.handleChange}
                   />
                 </Grid>
@@ -129,6 +144,7 @@ class CreateGears extends Component {
                       id="imgUrlBtn"
                       name="imgUrlBtn"
                       size="large"
+                      value={imgUrl}
                     >
                       Upload
                       <CloudUploadIcon className={classes.rightIcon} />
@@ -147,6 +163,7 @@ class CreateGears extends Component {
                     onChange={this.handleChange}
                     rows="10"
                     include_hidden="false"
+                    value={content}
                   />
                 </Grid>
               </Grid>
@@ -173,20 +190,19 @@ class CreateGears extends Component {
     );
   }
 }
-CreateGears.propTypes = {
+
+EditGear.propTypes = {
   classes: PropTypes.object.isRequired
 };
 
-const mapDispatchToProps = dispatch => {
-  return {
-    createGear: gear => dispatch(createGear(gear))
-  };
-};
+const mapStateToProps = ({ gear }) => ({ gear });
+
+const mapDispatchToProps = { updateGear, getGear };
 
 export default compose(
   withStyles(styles),
   connect(
-    null,
+    mapStateToProps,
     mapDispatchToProps
   )
-)(CreateGears);
+)(EditGear);

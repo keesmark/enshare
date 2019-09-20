@@ -10,10 +10,18 @@ const styles = theme => ({
   root: {
     display: "flex",
     flexWrap: "wrap",
-    justifyContent: "space-around"
+    [theme.breakpoints.only("xs")]: {
+      justifyContent: "center"
+    }
   }
 });
 class GearList extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      gear: []
+    };
+  }
   componentDidMount() {
     const { dispatch } = this.props;
     dispatch(getGears());

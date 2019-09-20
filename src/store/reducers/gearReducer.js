@@ -1,12 +1,15 @@
 import {
   FETCH_GEARS_SUCCESS,
   IS_FETCHING_GEARS,
-  FETCH_GEARS_FAILURE
+  FETCH_GEARS_FAILURE,
+  IS_FETCHING_GEAR,
+  FETCH_GEAR_SUCCESS,
+  FETCH_GEAR_FAILURE,
+  DELETE_GEAR_SUCCESS,
+  UPDATE_GEAR_SUCCESS
 } from "../actions/gearActions";
 
-const initState = {};
-
-const gearReducer = (state = initState, action) => {
+const gearReducer = (state = [], action) => {
   // eslint-disable-next-line
   switch (action.type) {
     case "CREATE_GEAR":
@@ -24,6 +27,19 @@ export function gears(state = [], action) {
   switch (action.type) {
     case FETCH_GEARS_SUCCESS:
       return action.gears;
+    case "CREATE_GEAR":
+      return [action.gear, ...state];
+    case DELETE_GEAR_SUCCESS:
+      return state.filter(gear => gear.id !== action.id);
+    case UPDATE_GEAR_SUCCESS:
+      return state.map(gear => {
+        if (gear.id === action.gear.id) {
+          return {
+            ...gear,
+            ...action.gear
+          };
+        } else return gear;
+      });
     default:
       return state;
   }
@@ -41,7 +57,34 @@ export function isFetchingGears(state = false, action) {
 export function fetchGearsFailure(state = false, action) {
   switch (action.type) {
     case FETCH_GEARS_FAILURE:
-      return action.fetchPostsFailure;
+      return action.fetchGearsFailure;
+    default:
+      return state;
+  }
+}
+
+export function isFetchingGear(state = false, action) {
+  switch (action.type) {
+    case IS_FETCHING_GEAR:
+      return action.isFetchingGear;
+    default:
+      return state;
+  }
+}
+
+export function gear(state = {}, action) {
+  switch (action.type) {
+    case FETCH_GEAR_SUCCESS:
+      return action.gear;
+    default:
+      return state;
+  }
+}
+
+export function fetchGearFailure(state = false, action) {
+  switch (action.type) {
+    case FETCH_GEAR_FAILURE:
+      return action.fetchGearFailure;
     default:
       return state;
   }
