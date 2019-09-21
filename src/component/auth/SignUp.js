@@ -12,6 +12,9 @@ import Typography from "@material-ui/core/Typography";
 import { withStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import PropTypes from "prop-types";
+import { createUser } from "../../store/actions/authActions";
+import { compose } from "redux";
+import { connect } from "react-redux";
 
 const styles = theme => ({
   "@global": {
@@ -52,7 +55,7 @@ class SignUp extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    console.log(this.state);
+    this.props.createUser(this.state);
   };
   render() {
     const { classes } = this.props;
@@ -148,4 +151,16 @@ SignUp.propTypes = {
   classes: PropTypes.object.isRequired
 };
 
-export default withStyles(styles)(SignUp);
+const mapDispatchToProps = dispatch => {
+  return {
+    createUser: user => dispatch(createUser(user))
+  };
+};
+
+export default compose(
+  withStyles(styles),
+  connect(
+    null,
+    mapDispatchToProps
+  )
+)(SignUp);
